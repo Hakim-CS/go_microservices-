@@ -1,6 +1,7 @@
 package main
 
-func main(){
+const webPort = "80"
 
+func main() {
 
 }
