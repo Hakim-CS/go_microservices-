@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
 )
 
 func main() {
@@ -13,16 +12,10 @@ func main() {
 		render(w, "test.page.gohtml")
 	})
 
-	// Determine port from environment or use a safe default
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-
-	addr := fmt.Sprintf(":%s", port)
-	fmt.Printf("Starting front end service on port %s\n", port)
-	if err := http.ListenAndServe(addr, nil); err != nil {
-		log.Fatal(err)
+	fmt.Println("Starting front end service on port 80")
+	err := http.ListenAndServe(":80", nil)
+	if err != nil {
+		log.Panic(err)
 	}
 }
 
