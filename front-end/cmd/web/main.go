@@ -13,7 +13,7 @@ func main() {
 	})
 
 	fmt.Println("Starting front end service on port 80")
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -30,7 +30,9 @@ func render(w http.ResponseWriter, t string) {
 	var templateSlice []string
 	templateSlice = append(templateSlice, fmt.Sprintf("./cmd/web/templates/%s", t))
 
-	templateSlice = append(templateSlice, partials...)
+	for _, x := range partials {
+		templateSlice = append(templateSlice, x)
+	}
 
 	tmpl, err := template.ParseFiles(templateSlice...)
 	if err != nil {
