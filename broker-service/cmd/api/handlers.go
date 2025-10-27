@@ -166,7 +166,7 @@ func (app *Config) sendMail(w http.ResponseWriter, msg MailPayload) {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-
+	
 	client := &http.Client{}
 	response, err := client.Do(request)
 	if err != nil {
